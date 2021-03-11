@@ -78,6 +78,7 @@ LOCAL_APPS = [
     "recruitment.users.apps.UsersConfig",
     # custom apps
     "recruitment.jobs.apps.JobsConfig",
+    "recruitment.interview.apps.InterviewConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -270,5 +271,3 @@ ACCOUNT_ADAPTER = "recruitment.users.adapters.AccountAdapter"
 SOCIALACCOUNT_ADAPTER = "recruitment.users.adapters.SocialAccountAdapter"
 
 
-# Your stuff...
-# ------------------------------------------------------------------------------
