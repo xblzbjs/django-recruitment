@@ -11,6 +11,7 @@ urlpatterns = [
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
     # Django Admin, use {% url 'admin:index' %}
+    path("grappelli/", include("grappelli.urls")),
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("users/", include("recruitment.users.urls", namespace="users")),
@@ -19,6 +20,7 @@ urlpatterns = [
     path("jobs/", include("recruitment.jobs.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+admin.site.site_header = '企业招聘管理系统'
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit

@@ -64,6 +64,8 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.humanize", # Handy template tags
+    "grappelli",
+    # "simpleui",
     "django.contrib.admin",
     "django.forms",
 ]
@@ -236,23 +238,43 @@ MANAGERS = ADMINS
 # https://docs.djangoproject.com/en/dev/ref/settings/#logging
 # See https://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
+# TODO 增加文件记录日志
+
+# LOG_DIR = "/data/logs/recruitment/"
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
     "formatters": {
-        "verbose": {
-            "format": "%(levelname)s %(asctime)s %(module)s "
-            "%(process)d %(thread)d %(message)s"
-        }
+        # "verbose": {
+        #     "format": "%(levelname)s %(asctime)s %(module)s "
+        #     "%(process)d %(thread)d %(message)s"
+        # },
+        'simple': { # exact format is not important, this is the minimum information
+            'format': '%(asctime)s %(name)-12s %(lineno)d %(levelname)-8s %(message)s',
+        },
     },
     "handlers": {
         "console": {
             "level": "DEBUG",
             "class": "logging.StreamHandler",
-            "formatter": "verbose",
-        }
+            "formatter": "simple",
+        },
+        'mail_admins': { # Add Handler for mail_admins for `warning` and above
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        },
+        # 'file': {
+        #     'level': 'INFO',
+        #     'class': 'logging.FileHandler',
+        #     'formatter': 'simple',
+        #     'filename': os.path.join(ROOT_DIR, 'recruitment.admin.log'),
+        # },
     },
-    "root": {"level": "INFO", "handlers": ["console"]},
+
+    "root": {
+        "handlers": ["console"],
+        "level": "INFO",
+    },
 }
 
 
