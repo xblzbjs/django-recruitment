@@ -15,7 +15,8 @@ urlpatterns = [
     # User management
     path("users/", include("recruitment.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
-    # Your stuff: custom urls includes go here
+    # Custom urls
+    path("jobs/", include("recruitment.jobs.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

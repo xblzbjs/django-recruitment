@@ -1,5 +1,5 @@
 """
-Base settings to build other settings files upon.
+基本配置
 """
 from pathlib import Path
 
@@ -10,9 +10,10 @@ ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 APPS_DIR = ROOT_DIR / "recruitment"
 env = environ.Env()
 
+# 是否
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
 if READ_DOT_ENV_FILE:
-    # OS environment variables take precedence over variables from .env
+    # 操作系统环境变量优先于.env中的变量
     env.read_env(str(ROOT_DIR / ".env"))
 
 # GENERAL
@@ -25,7 +26,7 @@ DEBUG = env.bool("DJANGO_DEBUG", False)
 # In Windows, this must be set to your system time zone.
 TIME_ZONE = "Asia/Shanghai"
 # https://docs.djangoproject.com/en/dev/ref/settings/#language-code
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "zh-hans"
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
@@ -62,7 +63,7 @@ DJANGO_APPS = [
     "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # "django.contrib.humanize", # Handy template tags
+    "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
     "django.forms",
 ]
@@ -75,7 +76,8 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "recruitment.users.apps.UsersConfig",
-    # Your stuff: custom apps go here
+    # custom apps
+    "recruitment.jobs.apps.JobsConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
