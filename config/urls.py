@@ -17,7 +17,7 @@ urlpatterns = [
     path("users/", include("recruitment.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Custom urls
-    path("jobs/", include("recruitment.jobs.urls")),
+    path("job/", include("recruitment.jobs.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 admin.site.site_header = '企业招聘管理系统'
