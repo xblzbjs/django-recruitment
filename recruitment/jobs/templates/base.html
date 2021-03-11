@@ -1,0 +1,24 @@
+<!--jobs/templates/base.html-->
+
+
+
+<h1 > 匠果科技开放职位</h1>
+
+
+{% if user.is_authenticated %}
+<p>终于等到你, 期待加入我们，用技术去探索一个新世界 </p>
+{% else %}
+<br>欢迎你，期待加入我们，登陆后可以提交简历.<br>
+{% endif %}
+  </div>
+
+
+	<input type="submit" value={% translate "Switch" %} style="font-size:12;height:20px">
+</form>
+</div>
+</div>
+<hr style="margin-top: 0px; ">
+{% endblock %}
+
+{% block content %}
+{% endblock %}

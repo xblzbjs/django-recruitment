@@ -8,6 +8,7 @@ from django.contrib import admin
 
 # from ..interview import candidate_field as cf
 from interview import candidate_field as cf
+from interview import dingtalk
 from .models import Candidate
 
 logger = logging.getLogger(__name__)
@@ -16,6 +17,18 @@ exportable_fields = ('username', 'city', 'phone', 'bachelor_school', 'master_sch
                      'second_result', 'second_interviewer_user', 'hr_result', 'hr_score', 'hr_remark', 'hr_interviewer_user')
 
 
+# 通知一面面试官面试
+def notify_interviewer(modeladmin, request, queryset):
+    candidates = ""
+    interviewers = ""
+    for obj in queryset:
+        candidates = obj.username + ";" + candidates
+        interviewers = obj.first_interviewer_user.username + ";" + interviewers
+    # 这里的消息发送到钉钉， 或者通过 Celery 异步发送到钉钉
+    #send ("候选人 %s 进入面试环节，亲爱的面试官，请准备好面试： %s" % (candidates, interviewers) )
+    dingtalk.send("候选人 %s 进入面试环节，亲爱的面试官，请准备好面试： %s" % (candidates, interviewers))
+
+notify_interviewer.short_description = u'通知一面面试官'
 
 def export_model_as_csv(modeladmin, request, queryset):
     """
@@ -55,7 +68,7 @@ class CandidateAdmin(admin.ModelAdmin):
     """
     exclude = ('creator', 'created_date', 'modified_date')
 
-    actions = (export_model_as_csv, )
+    actions = (export_model_as_csv, notify_interviewer)
 
     list_display = (
         'username', 'city', 'bachelor_school', 'first_score', 'first_result', 'first_interviewer_user', 'second_score',

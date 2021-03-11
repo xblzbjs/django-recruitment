@@ -56,3 +56,6 @@ INTERNAL_IPS = ["127.0.0.1", "10.0.2.2"]
 # https://django-extensions.readthedocs.io/en/latest/installation_instructions.html#configuration
 INSTALLED_APPS += ["django_extensions"]  # noqa F405
 
+
+# 钉钉
+DINGTALK_WEB_HOOK = "https://oapi.dingtalk.com/robot/send?access_token=5fadf07b1e6d6b8398a708496c8517cf0f168ed55dbe0e55cba91d4d421be9e0"
