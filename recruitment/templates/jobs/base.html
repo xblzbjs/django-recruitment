@@ -18,7 +18,7 @@
 {% endif %}
 
 {% if user.is_authenticated %}
-<p>终于等到你, 期待加入我们，用技术去探索一个新世界 </p>
+<p>终于等到你,{{ user.username }}, 期待加入我们，用技术去探索一个新世界 </p>
 {% else %}
 <br>欢迎你，期待加入我们，登陆后可以提交简历.<br>
 {% endif %}

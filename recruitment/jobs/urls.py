@@ -1,12 +1,16 @@
 from django.urls import path
 
-from . import views
+from .views import joblist, detail, ResumeCreateView
 
+
+app_name = "jobs"
 
 urlpatterns = [
     # 职位列表
-    path("list/", views.joblist, name="list"),
-    path("", views.joblist,name="name"),
+    path("list/", joblist, name="list"),
+    path("", joblist,name="name"),
     # 职位详情
-    path('<int:job_id>/', views.detail, name='detail'),
+    path('<int:job_id>/', detail, name='detail'),
+    # 提交简历
+    path('resume/add/', ResumeCreateView.as_view(), name='resume-add'),
 ]
