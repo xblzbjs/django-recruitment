@@ -10,4 +10,10 @@
         "--disable=line-too-long",
         "--disable=django-not-configured",
     ],
+    "workbench.iconTheme": "vscode-great-icons",
+    "todo-tree.tree.showScanModeButton": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "git.path": "/usr/bin/git"
+    
 }
